@@ -1,0 +1,20 @@
+//mixin to define flexboxes
+
+@mixin flexBox($direction, $wrap) {
+
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  box-sizing: border-box;
+
+}
+
+//mixin to define flexItems
+
+@mixin flexItem($grow, $shrink, $basis) {
+
+  flex: $grow $shrink $basis;
+  box-sizing: border-box;
+  border: 1px solid black;
+
+}

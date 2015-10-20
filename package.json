@@ -27,9 +27,11 @@
     "url": "https://github.com/evermuse/express-gallery/issues"
   },
   "homepage": "https://github.com/evermuse/express-gallery#readme",
-  "devDependencies": {
+  "dependencies": {
     "express": "^4.13.3",
-    "jade": "^1.11.0",
+    "jade": "^1.11.0"
+  },
+  "devDependencies": {
     "node-sass": "^3.3.3",
     "sequelize": "^3.12.2"
   }

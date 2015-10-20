@@ -1,29 +1,10 @@
+@import 'mixins/flexmixins';
+
 //global variables
 
 $bgColor : white;
 $fontColor: #7C777D;
 $desktop: "only screen and (min-width: 600px)";
-
-//mixin to define flexboxes
-
-@mixin flexBox($direction, $wrap) {
-
-  display: flex;
-  flex-direction: $direction;
-  flex-wrap: $wrap;
-  box-sizing: border-box;
-
-}
-
-//mixin to define flexItems
-
-@mixin flexItem($grow, $shrink, $basis) {
-
-  flex: $grow $shrink $basis;
-  box-sizing: border-box;
-  border: 1px solid black;
-
-}
 
 * {
 
