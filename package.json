@@ -1,0 +1,36 @@
+{
+  "name": "express-gallery",
+  "version": "1.0.0",
+  "description": "DevLeague project using Express, Sequelize, HTML5, stored on PostgreSQL",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "build-sass": "node-sass sass/styles.scss public/build/styles.css",
+    "watch-sass": "nodemon -e scss -w /sass -x 'npm run build-sass'",
+    "build": "npm run build-sass",
+    "watch": "npm run watch-sass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evermuse/express-gallery.git"
+  },
+  "keywords": [
+    "express",
+    "sequalize",
+    "html5",
+    "postgresSQL"
+  ],
+  "author": "bryan alexander",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evermuse/express-gallery/issues"
+  },
+  "homepage": "https://github.com/evermuse/express-gallery#readme",
+  "devDependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "node-sass": "^3.3.3",
+    "sequelize": "^3.12.2"
+  }
+}
