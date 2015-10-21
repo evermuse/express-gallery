@@ -4,7 +4,8 @@
 
 $bgColor : white;
 $fontColor: #7C777D;
-$desktop: "only screen and (min-width: 600px)";
+$tablet: "only screen and (min-width: 600px)";
+$desktop: "only screen and (min-width: 1000px)";
 
 * {
 
@@ -28,9 +29,9 @@ body {
 
 #mainViewContainer {
 
-  @include flexBox(column, no-wrap);
+  @include flexBox(column, nowrap);
   //height: 100%;
-  padding: 100px;
+  padding: 50px 100px 50px 100px;
 
 }
 
@@ -40,6 +41,7 @@ header {
   @include flexBox(row, nowrap);
   align-items: center;
   max-height: 120px;
+  margin-bottom: 25px;
 
   @media #{$desktop} {
 
@@ -49,16 +51,28 @@ header {
 
   h1 {
 
-  @include flexItem(1, 3, 50%);
+  @include flexItem(1, 3, 65%);
   text-align: center;
-  font-size: 80px;
+  font-size: 60px;
+
+    // @media #{$tablet} {
+
+    //   font-size: 60px;
+
+    // }
+
+    @media #{$desktop} {
+
+      font-size: 80px;
+
+    }
 
   }
 
   p {
 
     display: none;
-    @include flexItem(1, 1, 30%);
+    @include flexItem(1, 1, 35%);
     font-size: 14px;
 
     @media #{$desktop} {
@@ -82,9 +96,52 @@ header {
   .listing {
 
     @include flexItem(1, 1, 20%);
+    margin: 0 auto;
 
     @media #{$desktop} {
 
+
+    }
+
+    img {
+
+      max-width: 400px;
+      padding: 10px;
+      margin: 0 auto;
+
+    }
+
+    p {
+
+      padding: 10px;
+
+    }
+
+    a {
+
+      text-decoration: none;
+      padding: 10px;
+
+    }
+
+    &:nth-child(1) {
+
+      // width: 110%;
+      // height: 110%;
+      border-bottom: 1px solid gray;
+      margin-bottom: 5px;
+
+      p {
+
+        display: none;
+
+      }
+
+      a {
+
+        display: none;
+
+      }
 
     }
 
