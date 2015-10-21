@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "build-sass": "node-sass sass/styles.scss public/build/styles.css",
-    "watch-sass": "nodemon -e scss -w /sass -x 'npm run build-sass'",
+    "build-sass": "node-sass sass/styles.scss public/css/styles.css",
+    "watch-sass": "nodemon -e scss -w sass -x 'npm run build-sass'",
     "build": "npm run build-sass",
     "watch": "npm run watch-sass"
   },
@@ -32,6 +32,12 @@
     "jade": "^1.11.0"
   },
   "devDependencies": {
+    "connect-livereload": "^0.5.3",
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-sass": "^2.0.4",
     "node-sass": "^3.3.3",
     "sequelize": "^3.12.2"
   }

@@ -32,3 +32,18 @@ body {
   height: 100%;
 
 }
+
+header {
+
+  @include flexItem(1, 1, auto);
+  @include flexBox('row', no-wrap);
+
+}
+
+h1 {
+
+  @include flexItem(1, 1, auto);
+  text-align: center;
+  font-size: 70px;
+
+}

@@ -1,9 +1,13 @@
 var express = require('express');
 var app = express();
+var livereload = require('connect-livereload');
 
 //denote jade as view engine and view location
 app.set('view engine', 'jade');
 app.set('views', './views');
+
+//necessary to communicate with livereload
+app.use(livereload({ port : 35729 }));
 
 //defer all gallery routes to gallery router
 var gallery = require('./routes/gallery');
@@ -25,6 +29,8 @@ var server = app.listen(3000, function() {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log('example app listening a http://%s%s', host, port);
+  console.log('Express Gallery listening a http://%s%s', host, port);
 
 });
+
+

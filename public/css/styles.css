@@ -1,0 +1,39 @@
+/* line 9, stdin */
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'arial';
+  color: #7C777D; }
+
+/* line 18, stdin */
+body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white; }
+
+/* line 29, stdin */
+#viewPortContainer {
+  display: flex;
+  flex-direction: "row";
+  flex-wrap: no-wrap;
+  box-sizing: border-box;
+  height: 100%; }
+
+/* line 36, stdin */
+header {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: "row";
+  flex-wrap: no-wrap;
+  box-sizing: border-box; }
+
+/* line 43, stdin */
+h1 {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 70px; }
