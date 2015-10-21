@@ -118,31 +118,31 @@ header {
         #mainGallery .listing:nth-child(n+8) {
           display: none; }
         /* line 161, stdin */
-        #mainGallery .listing:nth-child(3n) {
+        #mainGallery .listing:nth-child(3n+2) {
           padding-right: 5px; } }
-    /* line 169, stdin */
+    /* line 170, stdin */
     #mainGallery .listing:nth-child(1) {
       border-bottom: 1px solid gray;
       margin-bottom: 5px;
       max-width: 350px; }
-      /* line 175, stdin */
+      /* line 176, stdin */
       #mainGallery .listing:nth-child(1) img {
         max-width: 325px; }
-      /* line 181, stdin */
+      /* line 182, stdin */
       #mainGallery .listing:nth-child(1) p {
         display: none; }
-      /* line 187, stdin */
+      /* line 188, stdin */
       #mainGallery .listing:nth-child(1) a {
         display: none; }
       @media only screen and (min-width: 1000px) {
-        /* line 169, stdin */
+        /* line 170, stdin */
         #mainGallery .listing:nth-child(1) {
           flex: 1 1 100%;
           box-sizing: border-box;
           border-bottom: 1px solid gray;
           margin-bottom: 5px;
           max-width: 100%; }
-          /* line 200, stdin */
+          /* line 201, stdin */
           #mainGallery .listing:nth-child(1) img {
             width: 100%;
             max-width: 100%;

@@ -158,7 +158,8 @@ header {
 
       }
 
-      &:nth-child(3n) {
+      &:nth-child(3n+2) {
+        //above styles every 3rd element, starting at the second element
 
         padding-right: 5px;
 
