@@ -1,0 +1,4 @@
+Just finished desktop styles (-padding on nth children) on main gallery page layout to go with the mobile styling
+
+2do:
+• styling the individual (focused) listings pages and all POST, GET, PUT form pages and functionality
