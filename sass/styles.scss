@@ -26,24 +26,69 @@ body {
 
 //define the viewPort flexBox
 
-#viewPortContainer {
+#mainViewContainer {
 
-  @include flexBox('row', no-wrap);
-  height: 100%;
+  @include flexBox(column, no-wrap);
+  //height: 100%;
+  padding: 100px;
 
 }
 
 header {
 
   @include flexItem(1, 1, auto);
-  @include flexBox('row', no-wrap);
+  @include flexBox(row, nowrap);
+  align-items: center;
+  max-height: 120px;
+
+  @media #{$desktop} {
+
+    border-top: 1px solid gray;
+
+  }
+
+  h1 {
+
+  @include flexItem(1, 3, 50%);
+  text-align: center;
+  font-size: 80px;
+
+  }
+
+  p {
+
+    display: none;
+    @include flexItem(1, 1, 30%);
+    font-size: 14px;
+
+    @media #{$desktop} {
+
+      display: block;
+      border-left: 1px solid gray;
+      margin: 0px 0px 0px 10px;
+      padding: 0px 10px 0px 20px;
+
+    }
+
+  }
 
 }
 
-h1 {
+#mainGallery {
 
   @include flexItem(1, 1, auto);
-  text-align: center;
-  font-size: 70px;
+  @include flexBox(column, nowrap);
+
+  .listing {
+
+    @include flexItem(1, 1, 20%);
+
+    @media #{$desktop} {
+
+
+    }
+
+  }
 
 }
+

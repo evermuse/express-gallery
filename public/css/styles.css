@@ -13,27 +13,56 @@ body {
   background-color: white; }
 
 /* line 29, stdin */
-#viewPortContainer {
+#mainViewContainer {
   display: flex;
-  flex-direction: "row";
+  flex-direction: column;
   flex-wrap: no-wrap;
   box-sizing: border-box;
-  height: 100%; }
+  padding: 100px; }
 
-/* line 36, stdin */
+/* line 37, stdin */
 header {
   flex: 1 1 auto;
   box-sizing: border-box;
-  border: 1px solid black;
   display: flex;
-  flex-direction: "row";
-  flex-wrap: no-wrap;
-  box-sizing: border-box; }
+  flex-direction: row;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  align-items: center;
+  max-height: 120px; }
+  @media only screen and (min-width: 600px) {
+    /* line 37, stdin */
+    header {
+      border-top: 1px solid gray; } }
+  /* line 50, stdin */
+  header h1 {
+    flex: 1 3 50%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 80px; }
+  /* line 58, stdin */
+  header p {
+    display: none;
+    flex: 1 1 30%;
+    box-sizing: border-box;
+    font-size: 14px; }
+    @media only screen and (min-width: 600px) {
+      /* line 58, stdin */
+      header p {
+        display: block;
+        border-left: 1px solid gray;
+        margin: 0px 0px 0px 10px;
+        padding: 0px 10px 0px 20px; } }
 
-/* line 43, stdin */
-h1 {
+/* line 77, stdin */
+#mainGallery {
   flex: 1 1 auto;
   box-sizing: border-box;
-  border: 1px solid black;
-  text-align: center;
-  font-size: 70px; }
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  box-sizing: border-box; }
+  /* line 82, stdin */
+  #mainGallery .listing {
+    flex: 1 1 20%;
+    box-sizing: border-box; }

@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var livereload = require('connect-livereload');
+var listingsArray = require('./listingsArray');
 
 //denote jade as view engine and view location
 app.set('view engine', 'jade');
@@ -19,7 +20,13 @@ app.use(express.static('public'));
 //where index is located
 app.get('/', function(req, res) {
 
-  res.render('index');
+  //can add render functionality here with object
+
+  res.render('index', {
+
+    listings : listingsArray.listings
+
+  });
 
 });
 
@@ -32,5 +39,3 @@ var server = app.listen(3000, function() {
   console.log('Express Gallery listening a http://%s%s', host, port);
 
 });
-
-

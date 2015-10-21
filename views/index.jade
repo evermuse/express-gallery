@@ -1,3 +1,7 @@
 extends ./layouts/mainLayout
 
+include ./mixins/listing
+
 block content
+
+  +generateListings(listings)
