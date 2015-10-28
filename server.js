@@ -8,6 +8,10 @@ var bodyparser = require('body-parser');
 //var User = db.user;
 var Photo = db.photo;
 
+//allows the post requests to be parsed
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended : true }));
+
 //denote jade as view engine and view location
 app.set('view engine', 'jade');
 app.set('views', './views');
@@ -43,19 +47,20 @@ app.get('/', function(req, res) {
 
 //allow users to add a photo
 
-app.post('/gallery', function (req, res) {
+app.post('/gallery/', function (req, res) {
+
+    console.log(req);
 
     Photo.create({
 
         image : req.body.url,
         description : req.body.description,
-        title : req.body.title,
         link : 'www.fantasticnorway.no'
 
     })
     .then(function (newPhoto) {
 
-        res.redirect('/gallery/' + newPhoto.id);
+        res.redirect('/'); //'/gallery/' + newPhoto.id
 
     });
 });
