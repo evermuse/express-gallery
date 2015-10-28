@@ -2,10 +2,11 @@ var express = require('express');
 var app = express();
 var livereload = require('connect-livereload');
 var db = require('./models');
+var bodyparser = require('body-parser');
 
 //bring in database models
-var User = db.User;
-var Photo = db.Photo;
+//var User = db.user;
+var Photo = db.photo;
 
 //denote jade as view engine and view location
 app.set('view engine', 'jade');
@@ -26,26 +27,46 @@ app.get('/', function(req, res) {
 
   //can add render functionality here with object
 
-  res.render('index', {
-
     Photo.findAll()
-     .then(function (photos) {
+     .then(function (data) {
 
-        res.json(photos);
+        res.render('index', {
+
+            title : 'Express Gallery',
+            listings : data
+
+        });
 
     });
 
-  });
+});
 
+//allow users to add a photo
+
+app.post('/gallery', function (req, res) {
+
+    Photo.create({
+
+        image : req.body.url,
+        description : req.body.description,
+        title : req.body.title,
+        link : 'www.fantasticnorway.no'
+
+    })
+    .then(function (newPhoto) {
+
+        res.redirect('/gallery/' + newPhoto.id);
+
+    });
 });
 
 //todo create all remaining routes
 
-app.get('/gallery/:id', {
-
-
-
-});
+//app.get('/gallery/:id', {
+//
+//
+//
+//});
 
 
 
@@ -55,6 +76,6 @@ var server = app.listen(3000, function() {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log('Express Gallery listening at http://%s%s', host, port);
+  console.log('Express Gallery listening at http://localhost', host, port);
 
 });

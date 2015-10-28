@@ -234,3 +234,33 @@ header {
 
 }
 
+footer {
+
+  padding: 15px 0;
+  @include flexItem(1, 1, 100px);
+  //display : none;
+  border-top : 1px solid black;
+  margin-top : 15px;
+
+  form {
+
+    @include flexBox(row, wrap);
+    height: 100%;
+    align-content: center;
+
+    button {
+
+      //float: right;
+
+    }
+
+  }
+
+  .formField {
+
+    @include flexItem(1, 1, 20%);
+
+  }
+
+}
+

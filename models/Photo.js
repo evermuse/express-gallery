@@ -1,8 +1,10 @@
-var listingsArray = require('./listingsArray');
+var listingsArray = require('../listingsArray');
+//var db = require('./models');
+//var User = db.user;
 
 module.exports = function(sequelize, DataTypes) {
 
-    var Photo = sequelize.define('Photo', {
+    var Photo = sequelize.define('photo', {
 
         image : DataTypes.STRING,
         link : DataTypes.STRING,
@@ -10,9 +12,9 @@ module.exports = function(sequelize, DataTypes) {
 
     });
 
-    Photo.belongsTo(User); //does the inner join
+    //Photo.belongsTo(User); //does the inner join
 
-    Photo.sync({ force: true })
+    Photo.sync({ force: true }) // force will always drop the db and reinitialize
         .then(function() {
 
             listingsArray.listings.forEach(function(listing) {

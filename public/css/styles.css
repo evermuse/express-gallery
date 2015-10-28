@@ -153,3 +153,23 @@ header {
             width: 100%;
             max-width: 100%;
             padding: 0px 0px 10px 0px; } }
+
+/* line 237, stdin */
+footer {
+  padding: 15px 0;
+  flex: 1 1 100px;
+  box-sizing: border-box;
+  border-top: 1px solid black;
+  margin-top: 15px; }
+  /* line 245, stdin */
+  footer form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    height: 100%;
+    align-content: center; }
+  /* line 259, stdin */
+  footer .formField {
+    flex: 1 1 20%;
+    box-sizing: border-box; }
