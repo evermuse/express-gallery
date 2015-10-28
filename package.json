@@ -29,7 +29,9 @@
   "homepage": "https://github.com/evermuse/express-gallery#readme",
   "dependencies": {
     "express": "^4.13.3",
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "pg": "^4.4.3",
+    "pg-hstore": "^2.3.2"
   },
   "devDependencies": {
     "connect-livereload": "^0.5.3",

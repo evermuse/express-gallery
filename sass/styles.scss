@@ -32,7 +32,7 @@ body {
   @include flexBox(column, nowrap);
   //height: 100%;
   padding: 50px 25px 50px 25px;
-  min-width: 450px;
+  min-width: 480px;
 
    @media #{$desktop} {
 
@@ -106,7 +106,7 @@ header {
 
     @include flexItem(1, 1, 20%);
     margin: 0 auto;
-    max-width: 325px;
+    max-width: 100%;
 
     img {
 
@@ -138,13 +138,6 @@ header {
 
       padding-top: 10px;
 
-      &:nth-child(n+5) {
-
-        border-top: 1px solid gray;
-        margin-top: 10px;
-
-       }
-
       img {
 
         padding: 0px;
@@ -161,9 +154,30 @@ header {
       &:nth-child(3n+2) {
         //above styles every 3rd element, starting at the second element
 
-        padding-right: 5px;
+        padding-right: 10px;
 
       }
+
+      &:nth-child(3n+3) {
+        //above styles every 3rd element, starting at the second element
+
+        padding: 10px 5px 0px 5px;
+
+      }
+
+      &:nth-child(3n+4) {
+        //above styles every 3rd element, starting at the second element
+
+        padding-left: 10px;
+
+      }
+
+      &:nth-child(n+5) {
+
+        border-top: 1px solid gray;
+        margin-top: 10px;
+
+       }
 
     }
 
@@ -209,6 +223,12 @@ header {
       }
 
     }
+
+    // &:nth-child(n+5) {
+
+    //     display: none;
+
+    //   }
 
   }
 

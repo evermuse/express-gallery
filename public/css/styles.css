@@ -19,7 +19,7 @@ body {
   flex-wrap: nowrap;
   box-sizing: border-box;
   padding: 50px 25px 50px 25px;
-  min-width: 450px; }
+  min-width: 480px; }
   @media only screen and (min-width: 1000px) {
     /* line 30, stdin */
     #mainViewContainer {
@@ -85,7 +85,7 @@ header {
     flex: 1 1 20%;
     box-sizing: border-box;
     margin: 0 auto;
-    max-width: 325px; }
+    max-width: 100%; }
     /* line 111, stdin */
     #mainGallery .listing img {
       max-width: 300px;
@@ -107,42 +107,48 @@ header {
         margin: 0px;
         padding-top: 10px; }
         /* line 141, stdin */
-        #mainGallery .listing:nth-child(n+5) {
-          border-top: 1px solid gray;
-          margin-top: 10px; }
-        /* line 148, stdin */
         #mainGallery .listing img {
           padding: 0px;
           max-width: 100%; }
-        /* line 155, stdin */
+        /* line 148, stdin */
         #mainGallery .listing:nth-child(n+8) {
           display: none; }
-        /* line 161, stdin */
+        /* line 154, stdin */
         #mainGallery .listing:nth-child(3n+2) {
-          padding-right: 5px; } }
-    /* line 170, stdin */
+          padding-right: 10px; }
+        /* line 161, stdin */
+        #mainGallery .listing:nth-child(3n+3) {
+          padding: 10px 5px 0px 5px; }
+        /* line 168, stdin */
+        #mainGallery .listing:nth-child(3n+4) {
+          padding-left: 10px; }
+        /* line 175, stdin */
+        #mainGallery .listing:nth-child(n+5) {
+          border-top: 1px solid gray;
+          margin-top: 10px; } }
+    /* line 184, stdin */
     #mainGallery .listing:nth-child(1) {
       border-bottom: 1px solid gray;
       margin-bottom: 5px;
       max-width: 350px; }
-      /* line 176, stdin */
+      /* line 190, stdin */
       #mainGallery .listing:nth-child(1) img {
         max-width: 325px; }
-      /* line 182, stdin */
+      /* line 196, stdin */
       #mainGallery .listing:nth-child(1) p {
         display: none; }
-      /* line 188, stdin */
+      /* line 202, stdin */
       #mainGallery .listing:nth-child(1) a {
         display: none; }
       @media only screen and (min-width: 1000px) {
-        /* line 170, stdin */
+        /* line 184, stdin */
         #mainGallery .listing:nth-child(1) {
           flex: 1 1 100%;
           box-sizing: border-box;
           border-bottom: 1px solid gray;
           margin-bottom: 5px;
           max-width: 100%; }
-          /* line 201, stdin */
+          /* line 215, stdin */
           #mainGallery .listing:nth-child(1) img {
             width: 100%;
             max-width: 100%;

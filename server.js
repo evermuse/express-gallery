@@ -1,7 +1,11 @@
 var express = require('express');
 var app = express();
 var livereload = require('connect-livereload');
-var listingsArray = require('./listingsArray');
+var db = require('./models');
+
+//bring in database models
+var User = db.User;
+var Photo = db.Photo;
 
 //denote jade as view engine and view location
 app.set('view engine', 'jade');
@@ -24,11 +28,26 @@ app.get('/', function(req, res) {
 
   res.render('index', {
 
-    listings : listingsArray.listings
+    Photo.findAll()
+     .then(function (photos) {
+
+        res.json(photos);
+
+    });
 
   });
 
 });
+
+//todo create all remaining routes
+
+app.get('/gallery/:id', {
+
+
+
+});
+
+
 
 //start up the server & define port
 var server = app.listen(3000, function() {
