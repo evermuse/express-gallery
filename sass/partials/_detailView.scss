@@ -1,0 +1,31 @@
+@import 'globals';
+
+
+#detailViewContainer {
+
+  @include flexBox(column, nowrap);
+  padding: 50px 25px 50px 25px;
+  min-width: 480px;
+
+  h1 {
+
+    font-size: 70px;
+
+  }
+
+  .headline {
+
+    display : none;
+
+  }
+
+  .listing {
+
+    @include flexItem(1, 1, auto);
+    margin: 0 auto;
+    max-width: 100%;
+    min-height: 100%;
+
+  }
+
+}

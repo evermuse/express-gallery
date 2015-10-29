@@ -1,8 +1,19 @@
 var express = require('express');
 var app = express();
+var session = require('express-session');
 var livereload = require('connect-livereload');
 var db = require('./models');
 var bodyparser = require('body-parser');
+var flash = require('connect-flash');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+//necessary to communicate with livereload
+app.use(livereload({ port : 35729 }));
+
+//denote jade as view engine and view location
+app.set('view engine', 'jade');
+app.set('views', './views');
 
 //bring in database models
 //var User = db.user;
@@ -12,12 +23,39 @@ var Photo = db.photo;
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended : true }));
 
-//denote jade as view engine and view location
-app.set('view engine', 'jade');
-app.set('views', './views');
+//user authentication - has to be after bodyparser
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
-//necessary to communicate with livereload
-app.use(livereload({ port : 35729 }));
+//serialize the authentication requests
+
+passport.serializeUser(function(user, done) {
+
+    done(null, user);
+
+});
+
+passport.deserializeUser(function(obj, done) {
+
+    done(null, obj);
+
+});
+
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        User.findOne({ username : username }, function (err, user) {
+            if (err) { return done(err); }
+            if (!user) {
+                return done(null, false, { message : 'Incorrect username.' });
+            }
+            if (!user.validPassword(password)) {
+                return done(null, false, { message : 'Incorrect password.' });
+            }
+            return done(null, user);
+        });
+    }
+));
 
 //defer all gallery routes to gallery router
 var gallery = require('./routes/gallery');
@@ -47,6 +85,16 @@ app.get('/', function(req, res) {
 
 //allow users to add a photo
 
+//todo add the passport authentication
+
+//app.post('/login',
+//    passport.authenticate('local', {
+//        successRedirect : '/success',
+//        failureRedirect : '/login',
+//        failureFlash : true
+//    })
+//);
+
 app.post('/gallery/', function (req, res) {
 
     Photo.create({
@@ -63,8 +111,6 @@ app.post('/gallery/', function (req, res) {
 
     });
 });
-
-//todo create all remaining routes
 
 app.get('/gallery/:id', function (req, res) {
 
@@ -108,3 +154,23 @@ var server = app.listen(3000, function() {
   console.log('Express Gallery listening at http://localhost', host, port);
 
 });
+
+//authentication function
+
+function ensureAuthenticated (req, res, next) {
+
+    if (req.isAuthenticated()) {
+
+        return next();
+
+    }
+
+    res.redirect('login');
+
+}
+
+
+//todo GET route for add photo form
+//todo PUT update a single gallery photo identified by the :id param
+//todo DELETE /gallery/:id to delete a single gallery photo identified by the :id param
+//todo GET /gallery/:id/edit to see a form to edit a gallery photo identified by the :id param

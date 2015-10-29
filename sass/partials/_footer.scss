@@ -1,0 +1,53 @@
+@import 'globals';
+
+footer {
+
+  padding: 15px 0;
+  @include flexItem(1, 1, 50px);
+  border-top : 1px solid black;
+  margin-top : 15px;
+
+//todo define action menu
+
+  #actionMenu {
+
+    @include flexBox(row, nowrap);
+    justify-content: space-between;
+
+    .actionButton {
+
+      @include flexItem(1, 1, 33%);
+      box-sizing: border-box;
+      border: 1px solid black;
+      height: 50px;
+      background-color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      max-width: 33%;
+
+    }
+
+  }
+
+  #loginForm {
+
+    display: none;
+
+  }
+
+  #addPhotoForm {
+
+    @include flexBox(row, wrap);
+    height: 100%;
+    align-content: center;
+    display: none;
+
+  }
+
+  .formField {
+
+    @include flexItem(1, 1, 25%);
+
+  }
+
+}
