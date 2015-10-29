@@ -6,7 +6,8 @@ var listingsArray = {
 
     { id : 1,
       image : '/images/photo1.png',
-      description : 'test description',
+      title : 'Glass & Lights Over Water',
+      description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis ipsum magna, vitae adipiscing nulla posuere et.',
       link : 'http://www.fantasticnorway.no'
     },
 

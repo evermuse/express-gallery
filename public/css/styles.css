@@ -176,6 +176,24 @@ footer {
     flex: 1 1 25%;
     box-sizing: border-box; }
 
-/* line 255, stdin */
-#detailViewContainer .headline {
-  display: none; }
+/* line 253, stdin */
+#detailViewContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  padding: 50px 25px 50px 25px;
+  min-width: 480px; }
+  /* line 259, stdin */
+  #detailViewContainer h1 {
+    font-size: 70px; }
+  /* line 265, stdin */
+  #detailViewContainer .headline {
+    display: none; }
+  /* line 271, stdin */
+  #detailViewContainer .listing {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 100%;
+    min-height: 100%; }
