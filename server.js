@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
 
   //can add render functionality here with object
 
-    Photo.findAll()
+    Photo.findAll( { limit : 8, order : '"updatedAt" DESC' } )
      .then(function (data) {
 
         res.render('index', {
@@ -49,13 +49,11 @@ app.get('/', function(req, res) {
 
 app.post('/gallery/', function (req, res) {
 
-    console.log(req);
-
     Photo.create({
 
         image : req.body.url,
         description : req.body.description,
-        link : 'www.fantasticnorway.no'
+        link : req.body.url
 
     })
     .then(function (newPhoto) {
@@ -67,13 +65,38 @@ app.post('/gallery/', function (req, res) {
 
 //todo create all remaining routes
 
-//app.get('/gallery/:id', {
-//
-//
-//
-//});
+app.get('/gallery/:id', function (req, res) {
 
+    var listingId = req.params.id;
 
+    Photo.find({
+
+        where : {
+
+            id : listingId
+
+        }
+
+    })
+    .then(function (listing) {
+
+        if (listingId !== null) {
+
+            res.render('detail', {
+
+                listing : listing.dataValues
+
+            });
+
+        } else {
+
+            res.send('404');
+
+        }
+
+    });
+
+});
 
 //start up the server & define port
 var server = app.listen(3000, function() {

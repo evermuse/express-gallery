@@ -48,7 +48,7 @@ var listingsArray = {
 
     { id : 8,
       image : '/images/photo8.png',
-      description : 'A Black and White House from Google Search',
+      description : 'A Black and White House',
       link : 'http://www.fantasticnorway.no'
     }
 

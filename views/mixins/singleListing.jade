@@ -1,0 +1,11 @@
+mixin generateSingleListing(listing)
+
+    div(class='listing' id='listing'+listing.id)
+
+        //wrapping all content in the A tag accomplishes the goal of everything clickable
+
+        //todo need to add title data
+
+        p= listing.link
+        img(src= listing.image class='listingImage')
+        p= listing.description

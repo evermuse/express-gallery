@@ -107,6 +107,8 @@ header {
     @include flexItem(1, 1, 20%);
     margin: 0 auto;
     max-width: 100%;
+    min-height: 100%;
+    cursor: pointer;
 
     img {
 
@@ -119,14 +121,17 @@ header {
 
     p {
 
-      padding: 10px;
+      padding: 10px 10px 10px 0;
 
     }
 
     a {
 
       text-decoration: none;
-      padding: 10px;
+      padding: 10px 10px 10px 0;
+      display: block;
+      height: 100%;
+      width: 100%;
 
     }
 
@@ -199,12 +204,6 @@ header {
 
       }
 
-      a {
-
-        display: none;
-
-      }
-
       @media #{$desktop} {
 
         @include flexItem(1, 1, 100%);
@@ -224,12 +223,6 @@ header {
 
     }
 
-    // &:nth-child(n+5) {
-
-    //     display: none;
-
-    //   }
-
   }
 
 }
@@ -238,7 +231,6 @@ footer {
 
   padding: 15px 0;
   @include flexItem(1, 1, 100px);
-  //display : none;
   border-top : 1px solid black;
   margin-top : 15px;
 
@@ -247,12 +239,6 @@ footer {
     @include flexBox(row, wrap);
     height: 100%;
     align-content: center;
-
-    button {
-
-      //float: right;
-
-    }
 
   }
 
@@ -264,3 +250,12 @@ footer {
 
 }
 
+#detailViewContainer {
+
+  .headline {
+
+    display : none;
+
+  }
+
+}

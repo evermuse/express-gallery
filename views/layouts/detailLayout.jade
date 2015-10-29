@@ -5,14 +5,17 @@ html
   head
 
     title= title
-    link(rel="stylesheet", href="css/styles.css")
+
+    //make sure that css path is absolute 'with /' otherwise won't connect
+
+    link(rel="stylesheet", href="/css/styles.css")
 
   body
 
-    div#mainViewContainer
+    div#detailViewContainer
 
       include ../partials/_header
 
-      section#mainListing
+      block content
 
-        block content
+

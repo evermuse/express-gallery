@@ -85,19 +85,24 @@ header {
     flex: 1 1 20%;
     box-sizing: border-box;
     margin: 0 auto;
-    max-width: 100%; }
-    /* line 111, stdin */
+    max-width: 100%;
+    min-height: 100%;
+    cursor: pointer; }
+    /* line 113, stdin */
     #mainGallery .listing img {
       max-width: 300px;
       padding: 10px;
       margin: 0 auto; }
-    /* line 120, stdin */
+    /* line 122, stdin */
     #mainGallery .listing p {
-      padding: 10px; }
-    /* line 126, stdin */
+      padding: 10px 10px 10px 0; }
+    /* line 128, stdin */
     #mainGallery .listing a {
       text-decoration: none;
-      padding: 10px; }
+      padding: 10px 10px 10px 0;
+      display: block;
+      height: 100%;
+      width: 100%; }
     @media only screen and (min-width: 1000px) {
       /* line 105, stdin */
       #mainGallery .listing {
@@ -106,62 +111,59 @@ header {
         box-sizing: border-box;
         margin: 0px;
         padding-top: 10px; }
-        /* line 141, stdin */
+        /* line 146, stdin */
         #mainGallery .listing img {
           padding: 0px;
           max-width: 100%; }
-        /* line 148, stdin */
+        /* line 153, stdin */
         #mainGallery .listing:nth-child(n+8) {
           display: none; }
-        /* line 154, stdin */
+        /* line 159, stdin */
         #mainGallery .listing:nth-child(3n+2) {
           padding-right: 10px; }
-        /* line 161, stdin */
+        /* line 166, stdin */
         #mainGallery .listing:nth-child(3n+3) {
           padding: 10px 5px 0px 5px; }
-        /* line 168, stdin */
+        /* line 173, stdin */
         #mainGallery .listing:nth-child(3n+4) {
           padding-left: 10px; }
-        /* line 175, stdin */
+        /* line 180, stdin */
         #mainGallery .listing:nth-child(n+5) {
           border-top: 1px solid gray;
           margin-top: 10px; } }
-    /* line 184, stdin */
+    /* line 189, stdin */
     #mainGallery .listing:nth-child(1) {
       border-bottom: 1px solid gray;
       margin-bottom: 5px;
       max-width: 350px; }
-      /* line 190, stdin */
+      /* line 195, stdin */
       #mainGallery .listing:nth-child(1) img {
         max-width: 325px; }
-      /* line 196, stdin */
+      /* line 201, stdin */
       #mainGallery .listing:nth-child(1) p {
         display: none; }
-      /* line 202, stdin */
-      #mainGallery .listing:nth-child(1) a {
-        display: none; }
       @media only screen and (min-width: 1000px) {
-        /* line 184, stdin */
+        /* line 189, stdin */
         #mainGallery .listing:nth-child(1) {
           flex: 1 1 100%;
           box-sizing: border-box;
           border-bottom: 1px solid gray;
           margin-bottom: 5px;
           max-width: 100%; }
-          /* line 215, stdin */
+          /* line 214, stdin */
           #mainGallery .listing:nth-child(1) img {
             width: 100%;
             max-width: 100%;
             padding: 0px 0px 10px 0px; } }
 
-/* line 237, stdin */
+/* line 230, stdin */
 footer {
   padding: 15px 0;
   flex: 1 1 100px;
   box-sizing: border-box;
   border-top: 1px solid black;
   margin-top: 15px; }
-  /* line 245, stdin */
+  /* line 237, stdin */
   footer form {
     display: flex;
     flex-direction: row;
@@ -169,7 +171,11 @@ footer {
     box-sizing: border-box;
     height: 100%;
     align-content: center; }
-  /* line 259, stdin */
+  /* line 245, stdin */
   footer .formField {
     flex: 1 1 25%;
     box-sizing: border-box; }
+
+/* line 255, stdin */
+#detailViewContainer .headline {
+  display: none; }
