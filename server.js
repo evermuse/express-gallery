@@ -52,6 +52,7 @@ app.post('/gallery/', function (req, res) {
     Photo.create({
 
         image : req.body.url,
+        title : req.body.title,
         description : req.body.description,
         link : req.body.url
 

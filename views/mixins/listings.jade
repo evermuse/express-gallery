@@ -7,7 +7,7 @@ mixin generateListings(listings)
       //wrapping all content in the A tag accomplishes the goal of everything clickable
       a(href='/gallery/#{listing.id}')
         img(src= listing.image class='listingImage')
-        p= listing.description
+        p= listing.title
         p Learn More
 
 

@@ -13,43 +13,50 @@ var listingsArray = {
 
     { id : 2,
       image : '/images/photo2.png',
-      description : 'Mountain Hill Cabin Winter',
+      title : 'Mountain Hill Cabin Winter',
+      description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis ipsum magna, vitae adipiscing nulla posuere et.',
       link : 'http://www.fantasticnorway.no'
     },
 
     { id : 3,
       image : '/images/photo3.png',
-      description : 'Kneisen Visitors Center',
+      title : 'Kneisen Visitors Center',
+      description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis ipsum magna, vitae adipiscing nulla posuere et.',
       link : 'http://www.fantasticnorway.no'
     },
 
     { id : 4,
       image : '/images/photo4.png',
-      description : 'Bronnoy Kunstbase',
+      title : 'Bronnoy Kunstbase',
+      description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis ipsum magna, vitae adipiscing nulla posuere et.',
       link : 'http://www.fantasticnorway.no'
     },
 
     { id : 5,
       image : '/images/photo5.png',
-      description : 'Not an Ikea design',
+      title : 'Not an Ikea design',
+      description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis ipsum magna, vitae adipiscing nulla posuere et.',
       link : 'http://www.fantasticnorway.no'
     },
 
     { id : 6,
       image : '/images/photo6.png',
-      description : 'Still not an Ikea design',
+      title : 'Still not an Ikea design',
+      description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis ipsum magna, vitae adipiscing nulla posuere et.',
       link : 'http://www.fantasticnorway.no'
     },
 
     { id : 7,
       image : '/images/photo7.png',
-      description : 'Norwegian Design',
+      title : 'Norwegian Design',
+      description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis ipsum magna, vitae adipiscing nulla posuere et.',
       link : 'http://www.fantasticnorway.no'
     },
 
     { id : 8,
       image : '/images/photo8.png',
-      description : 'A Black and White House',
+      title : 'A Black and White House',
+      description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis ipsum magna, vitae adipiscing nulla posuere et.',
       link : 'http://www.fantasticnorway.no'
     }
 
