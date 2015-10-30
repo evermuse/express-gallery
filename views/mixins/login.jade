@@ -1,3 +1,17 @@
 mixin login
 
-  section#loginForm
+    form#loginForm(action="#" method="POST")
+
+        h3.formField Login:
+
+        #usernameInput.formField
+
+            input(type='text' name='username' placeholder=' username')
+
+        #passwordInput.formField
+
+            input(type='password' name='password' placeholder=' password')
+
+        .formField
+
+            button Submit

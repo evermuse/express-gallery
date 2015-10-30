@@ -7,12 +7,15 @@ module.exports = function(sequelize, DataTypes) {
     var Photo = sequelize.define('photo', {
 
         image : DataTypes.STRING,
+        title : DataTypes.STRING,
         link : DataTypes.STRING,
         description : DataTypes.TEXT
 
     });
 
     //Photo.belongsTo(User); //does the inner join
+
+    //could be put in seeder folder
 
     Photo.sync({ force: true }) // force will always drop the db and reinitialize
         .then(function() {

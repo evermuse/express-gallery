@@ -95,7 +95,7 @@ app.get('/', function(req, res) {
 //    })
 //);
 
-app.post('/gallery/', function (req, res) {
+app.post('/gallery/', ajaxAuth, function (req, res) {
 
     Photo.create({
 
@@ -144,6 +144,20 @@ app.get('/gallery/:id', function (req, res) {
     });
 
 });
+
+function ajaxAuth(req, res, next) {
+
+    if (req.isAuthenticated()) {
+
+        return res.send(200, 'user is logged in');
+
+    } else {
+
+        return res.send(401, 'user is not logged in');
+
+    }
+
+}
 
 //start up the server & define port
 var server = app.listen(3000, function() {

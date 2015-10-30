@@ -2,21 +2,29 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var nodemon = require('gulp-nodemon');
 var livereload = require('gulp-livereload');
+var babel = require('gulp-babel');
 
 // keeps gulp from crashing for scss errors
 gulp.task('sass', function () {
-  return gulp.src('./sass/*.scss')
+  return gulp.src('./src/sass/*.scss')
       .pipe(sass({
         errLogToConsole : true,
-        sourceComments : true
+        sourceComments : true //adds comments to css //remove for final minify build
       }).on('error', sass.logError))
       .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('watch', function () {
-  gulp.watch('./sass/**/*.scss', ['sass']);
+  gulp.watch('./src/sass/**/*.scss', ['sass']);
   gulp.watch(['./views/**/*', './public/**/*'], livereload.changed);
+  gulp.watch('./src/js/**/*', ['js']); //watch all files in all the directories
   livereload.listen(35729);
+});
+
+gulp.task('js', function () {
+    return gulp.src('./src/js/*.js')
+        .pipe(babel())
+        .pipe(gulp.dest('./public/js'));
 });
 
 gulp.task('start', function () {
@@ -38,4 +46,4 @@ gulp.task('start', function () {
 
 });
 
-gulp.task('default', ['watch', 'sass', 'start']);
+gulp.task('default', ['watch', 'sass', 'start', 'js']);
