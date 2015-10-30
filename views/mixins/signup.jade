@@ -1,0 +1,21 @@
+mixin signup
+
+    form#signupForm(action="/signup/" method="POST")
+
+        h3.formField Create Account:
+
+        #usernameInput.formField
+
+            input(type='text' name='username' placeholder=' username')
+
+        #passwordInput.formField
+
+            input(type='password' name='password' placeholder=' password')
+
+        #passwordConfirm.formField
+
+            input(type='password' name='password' placeholder=' password')
+
+        .formField
+
+            button Submit

@@ -1,4 +1,5 @@
 'use strict';
+var db = require('../../models');
 
 //namespace
 var ExpressGallery = window.ExpressGallery || {};
@@ -6,120 +7,177 @@ var ExpressGallery = window.ExpressGallery || {};
 //module
 ExpressGallery.expressGalleryModule = (function () {
 
-    var module = {
+  var module = {
 
-        init: _init,
-        footerListeners: _footerListeners,
-        footerSubmissions: _footerSubmissions
+    init: _init,
+    footerListeners: _footerListeners,
+    footerSubmissions: _footerSubmissions
 
-    };
+  };
 
-    function _footerListeners() {
+  function _footerListeners() {
 
-        var addPhotoButton = document.querySelector('#addPhotoNavButton');
-        addPhotoButton.addEventListener('click', _addPhotoForm);
+    var addPhotoButton = document.querySelector('#addPhotoNavButton');
+    addPhotoButton.addEventListener('click', _addPhotoForm);
 
-        var editPhotoButton = document.querySelector('#editPhotoNavButton');
-        editPhotoButton.addEventListener('click', _editPhotoForm);
+    var editPhotoButton = document.querySelector('#editPhotoNavButton');
+    editPhotoButton.addEventListener('click', _editPhotoForm);
 
-        var deletePhotoButton = document.querySelector('#deletePhotoNavButton');
-        deletePhotoButton.addEventListener('click', _deletePhotoForm);
-    }
+    var deletePhotoButton = document.querySelector('#deletePhotoNavButton');
+    deletePhotoButton.addEventListener('click', _deletePhotoForm);
+  }
 
-    function _addPhotoForm() {
+  function _addPhotoForm() {
 
-        $('#actionMenu').addClass('hide');
-        $('#addPhotoForm').addClass('show');
-    }
+    $('#actionMenu').addClass('hide');
+    $('#addPhotoForm').addClass('show');
+  }
 
-    function _editPhotoForm() {
+  function _editPhotoForm() {
 
-        $.ajax({
+    $.ajax({
 
-            url: '/isAuthenticated',
-            success: function success(data) {},
+      url: '/isAuthenticated',
+      success: function success(data) {},
 
-            error: function error(err) {
+      error: function error(err) {
 
-                console.log(err);
-            }
+        console.log(err);
+      }
 
-        });
-    }
+    });
+  }
 
-    function _deletePhotoForm() {
+  function _deletePhotoForm() {
 
-        $.ajax({
+    $.ajax({
 
-            url: '/isAuthenticated',
-            success: function success(data) {},
+      url: '/isAuthenticated',
+      success: function success(data) {},
 
-            error: function error(err) {
+      error: function error(err) {
 
-                console.log(err);
-            }
+        console.log(err);
+      }
 
-        });
-    }
+    });
+  }
 
-    function _footerSubmissions() {
+  function _footerSubmissions() {
 
-        var addPhotoSubmit = document.querySelector('#addPhotoForm');
-        addPhotoSubmit.addEventListener('submit', function (event) {
+    var addPhotoSubmit = document.querySelector('#addPhotoForm');
+    addPhotoSubmit.addEventListener('submit', function (event) {
 
-            event.preventDefault();
+      event.preventDefault();
 
-            console.log(this);
+      console.log(this);
 
-            var newImage = $('input:text[name=link]').val();
-            var newTitle = $('input:text[name=title]').val();
-            var newLink = $('input:text[name=link]').val();
-            var newDescription = $('input:text[name=description]').val();
+      var newImage = $('input:text[name=link]').val();
+      var newTitle = $('input:text[name=title]').val();
+      var newLink = $('input:text[name=link]').val();
+      var newDescription = $('input:text[name=description]').val();
 
-            $.ajax({
+      $(document).ajaxSend(function () {
 
-                url: '/gallery/',
-                method: 'POST',
-                data: {
+        sessionStorage.setItem(photoData);
+      });
 
-                    image: newImage,
-                    title: newTitle,
-                    link: newLink,
-                    description: newDescription
+      $.ajax({
 
-                },
+        url: '/gallery/',
+        method: 'POST',
+        photoData: {
 
-                success: function success(data) {
+          image: newImage,
+          title: newTitle,
+          link: newLink,
+          description: newDescription
 
-                    console.log(data);
-                },
+        },
 
-                error: function error(err) {
+        success: function success(photoData) {
 
-                    $('#addPhotoForm').removeClass('show');
-                    $('#loginForm').addClass('show');
+          console.log(photoData);
+        },
 
-                    console.log(err);
-                }
+        error: function error(err) {
 
-            });
-        });
-    }
+          $('#addPhotoForm').removeClass('show');
+          $('#loginForm').addClass('show');
 
-    function _init() {
+          console.log(err);
+        }
 
-        //load footer button click listeners
-        _footerListeners();
+      });
+    });
 
-        _footerSubmissions();
-    }
+    $('#usernameInput').blur(function () {
 
-    return module;
+      var currentUser = $('input:text[name=username').val();
+
+      if (User.findOne({ where: { username: currentUser } })) {
+
+        return true;
+      } else {}
+    });
+
+    loginSubmit.addEventListener('submit', function (event) {
+
+      var sessionData = sessionStorage.getItem(photoData);
+
+      console.log(photoData);
+
+      console.log(this);
+
+      var newImage = $('input:text[name=link]').val();
+      var newTitle = $('input:text[name=title]').val();
+      var newLink = $('input:text[name=link]').val();
+      var newDescription = $('input:text[name=description]').val();
+
+      $.ajax({
+
+        url: '/gallery/',
+        method: 'POST',
+        data: {
+
+          image: newImage,
+          title: newTitle,
+          link: newLink,
+          description: newDescription
+
+        },
+
+        success: function success(data) {
+
+          console.log(data);
+        },
+
+        error: function error(err) {
+
+          $('#addPhotoForm').removeClass('show');
+          $('#loginForm').addClass('show');
+
+          console.log(err);
+        }
+
+      });
+    });
+  }
+
+  function _init() {
+
+    //load footer button click listeners
+    _footerListeners();
+
+    _footerSubmissions();
+  }
+
+  return module;
 })();
 
 //load function
 
 document.addEventListener('DOMContentLoaded', function (event) {
 
-    ExpressGallery.expressGalleryModule.init();
+  ExpressGallery.expressGalleryModule.init();
 });

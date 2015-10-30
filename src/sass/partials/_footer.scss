@@ -7,8 +7,6 @@ footer {
   border-top : 1px solid black;
   margin-top : 15px;
 
-//todo define action menu
-
   #actionMenu {
 
     @include flexBox(row, nowrap);
@@ -36,6 +34,18 @@ footer {
   }
 
   #loginForm {
+
+    display: none;
+
+    &.show {
+
+      display: flex;
+
+    }
+
+  }
+
+  #signupForm {
 
     display: none;
 

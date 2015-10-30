@@ -1,4 +1,5 @@
 'use strict';
+let db = require('../../models');
 
 //namespace
 let ExpressGallery = window.ExpressGallery || {};
@@ -92,6 +93,76 @@ ExpressGallery.expressGalleryModule = (function() {
           var newLink = $( 'input:text[name=link]').val();
           var newDescription = $( 'input:text[name=description]').val();
 
+          $( document ).ajaxSend(function() {
+
+            sessionStorage.setItem(photoData);
+
+          });
+
+          $.ajax({
+
+            url : '/gallery/',
+            method : 'POST',
+            photoData : {
+
+              image : newImage,
+              title : newTitle,
+              link : newLink,
+              description : newDescription
+
+            },
+
+            success : function(photoData) {
+
+              console.log(photoData);
+
+            },
+
+            error : function(err) {
+
+
+              $('#addPhotoForm').removeClass('show');
+              $('#loginForm').addClass('show');
+
+              console.log(err);
+
+            }
+
+          });
+
+
+        });
+
+        $('#usernameInput').blur(function() {
+
+          var currentUser = $('input:text[name=username').val();
+
+          if (User.findOne({where: {username: currentUser }})) {
+
+            return true;
+
+          } else {
+
+
+
+          }
+
+        });
+
+        loginSubmit.addEventListener('submit', function(event) {
+
+          var sessionData = sessionStorage.getItem(photoData);
+
+          console.log(photoData);
+
+
+          console.log(this);
+
+          var newImage = $( 'input:text[name=link]').val();
+          var newTitle = $( 'input:text[name=title]').val();
+          var newLink = $( 'input:text[name=link]').val();
+          var newDescription = $( 'input:text[name=description]').val();
+
           $.ajax({
 
             url : '/gallery/',
@@ -123,7 +194,7 @@ ExpressGallery.expressGalleryModule = (function() {
           });
 
 
-        });
+      });
 
     }
 
