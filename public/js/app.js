@@ -1,5 +1,4 @@
 'use strict';
-var db = require('../../models');
 
 //namespace
 var ExpressGallery = window.ExpressGallery || {};
@@ -33,79 +32,54 @@ ExpressGallery.expressGalleryModule = (function () {
     $('#addPhotoForm').addClass('show');
   }
 
-  function _editPhotoForm() {
+  function _editPhotoForm() {}
 
-    $.ajax({
-
-      url: '/isAuthenticated',
-      success: function success(data) {},
-
-      error: function error(err) {
-
-        console.log(err);
-      }
-
-    });
-  }
-
-  function _deletePhotoForm() {
-
-    $.ajax({
-
-      url: '/isAuthenticated',
-      success: function success(data) {},
-
-      error: function error(err) {
-
-        console.log(err);
-      }
-
-    });
-  }
+  function _deletePhotoForm() {}
 
   function _footerSubmissions() {
+
+    var newImage, newTitle, newLink, newDescription;
+
+    var payload = {
+
+      image: newImage,
+      title: newTitle,
+      link: newLink,
+      description: newDescription
+
+    };
 
     var addPhotoSubmit = document.querySelector('#addPhotoForm');
     addPhotoSubmit.addEventListener('submit', function (event) {
 
       event.preventDefault();
 
-      console.log(this);
-
-      var newImage = $('input:text[name=link]').val();
-      var newTitle = $('input:text[name=title]').val();
-      var newLink = $('input:text[name=link]').val();
-      var newDescription = $('input:text[name=description]').val();
+      newImage = document.querySelector('input:text[name=link]').value; //either the vanilla or jquery way will work
+      newTitle = $('input:text[name=title]').val();
+      newLink = $('input:text[name=link]').val();
+      newDescription = $('input:text[name=description]').val();
 
       $(document).ajaxSend(function () {
 
-        sessionStorage.setItem(photoData);
+        sessionStorage.setItem('payload', payload);
       });
 
       $.ajax({
 
         url: '/gallery/',
         method: 'POST',
-        photoData: {
+        data: payload,
 
-          image: newImage,
-          title: newTitle,
-          link: newLink,
-          description: newDescription
+        success: function success() {
 
-        },
+          //display a message that confirms photo added
 
-        success: function success(photoData) {
-
-          console.log(photoData);
         },
 
         error: function error(err) {
 
           $('#addPhotoForm').removeClass('show');
           $('#loginForm').addClass('show');
-
-          console.log(err);
         }
 
       });
@@ -113,55 +87,91 @@ ExpressGallery.expressGalleryModule = (function () {
 
     $('#usernameInput').blur(function () {
 
-      var currentUser = $('input:text[name=username').val();
+      var currentUser = { username: $('input:text[name=username').val() }; //could break out into two separate
 
-      if (User.findOne({ where: { username: currentUser } })) {
+      $.ajax({
 
-        return true;
-      } else {}
+        url: '/api/isUser/',
+        method: 'POST',
+        data: currentUser,
+
+        success: function success() {
+
+          //display a message that confirms login
+
+        },
+
+        error: function error(err) {
+
+          $('#loginForm').removeClass('show');
+          $('#signUpForm').addClass('show');
+        }
+
+      });
     });
 
-    loginSubmit.addEventListener('submit', function (event) {
+    //login starter function
 
-      var sessionData = sessionStorage.getItem(photoData);
+    document.querySelector('#LoginForm').addEventListener('submit', function () {
 
-      console.log(photoData);
+      var username = $('input:text[name=username]').val();
+      var password = $('input:text[name=password]').val();
 
-      console.log(this);
+      loginUser(username, password);
+    });
 
-      var newImage = $('input:text[name=link]').val();
-      var newTitle = $('input:text[name=title]').val();
-      var newLink = $('input:text[name=link]').val();
-      var newDescription = $('input:text[name=description]').val();
+    //post new photo function
+
+    var postNewPhoto = function postNewPhoto(loginUser, payload) {
+
+      var sessionData = sessionStorage.getItem(payload);
 
       $.ajax({
 
         url: '/gallery/',
         method: 'POST',
-        data: {
+        data: payload,
 
-          image: newImage,
-          title: newTitle,
-          link: newLink,
-          description: newDescription
+        success: function success() {
 
-        },
-
-        success: function success(data) {
-
-          console.log(data);
+          $('#actionMenu').removeClass('hide');
+          $('#signUpForm').removeClass('show');
         },
 
         error: function error(err) {
 
-          $('#addPhotoForm').removeClass('show');
-          $('#loginForm').addClass('show');
-
-          console.log(err);
+          console.log('photo not received. please try again.');
         }
 
       });
-    });
+    };
+
+    //reusable login function
+
+    var loginUser = function loginUser(username, password) {
+
+      $.ajax({
+
+        url: '/login/',
+        method: 'POST',
+        data: {
+          username: username,
+          password: password
+        },
+
+        success: function success() {
+
+          $('#actionMenu').removeClass('hide');
+          $('#signUpForm').removeClass('show');
+        },
+
+        error: function error(err) {
+
+          console.log('could not find the user in question. please try again');
+        }
+
+      });
+    };
   }
 
   function _init() {

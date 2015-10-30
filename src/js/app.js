@@ -1,5 +1,4 @@
 'use strict';
-let db = require('../../models');
 
 //namespace
 let ExpressGallery = window.ExpressGallery || {};
@@ -37,65 +36,43 @@ ExpressGallery.expressGalleryModule = (function() {
 
     function _editPhotoForm() {
 
-        $.ajax({
-
-            url : '/isAuthenticated',
-            success : function(data) {
-
-
-
-
-            },
-
-            error : function(err) {
-
-                console.log(err);
-
-            }
-
-        });
 
     }
 
     function _deletePhotoForm() {
 
-        $.ajax({
-
-            url : '/isAuthenticated',
-            success : function(data) {
-
-
-
-
-            },
-
-            error : function(err) {
-
-                console.log(err);
-
-            }
-
-        });
 
     }
 
     function _footerSubmissions() {
+
+        var newImage,
+            newTitle,
+            newLink,
+            newDescription;
+
+        var payload = {
+
+          image : newImage,
+          title : newTitle,
+          link : newLink,
+          description : newDescription
+
+        };
 
         var addPhotoSubmit = document.querySelector('#addPhotoForm');
         addPhotoSubmit.addEventListener('submit', function(event) {
 
           event.preventDefault();
 
-          console.log(this);
-
-          var newImage = $( 'input:text[name=link]').val();
-          var newTitle = $( 'input:text[name=title]').val();
-          var newLink = $( 'input:text[name=link]').val();
-          var newDescription = $( 'input:text[name=description]').val();
+          newImage = document.querySelector( 'input:text[name=link]').value; //either the vanilla or jquery way will work
+          newTitle = $( 'input:text[name=title]').val();
+          newLink = $( 'input:text[name=link]').val();
+          newDescription = $( 'input:text[name=description]').val();
 
           $( document ).ajaxSend(function() {
 
-            sessionStorage.setItem(photoData);
+            sessionStorage.setItem('payload', payload);
 
           });
 
@@ -103,18 +80,11 @@ ExpressGallery.expressGalleryModule = (function() {
 
             url : '/gallery/',
             method : 'POST',
-            photoData : {
+            data : payload,
 
-              image : newImage,
-              title : newTitle,
-              link : newLink,
-              description : newDescription
+            success : function() {
 
-            },
-
-            success : function(photoData) {
-
-              console.log(photoData);
+              //display a message that confirms photo added
 
             },
 
@@ -123,8 +93,6 @@ ExpressGallery.expressGalleryModule = (function() {
 
               $('#addPhotoForm').removeClass('show');
               $('#loginForm').addClass('show');
-
-              console.log(err);
 
             }
 
@@ -135,69 +103,104 @@ ExpressGallery.expressGalleryModule = (function() {
 
         $('#usernameInput').blur(function() {
 
-          var currentUser = $('input:text[name=username').val();
-
-          if (User.findOne({where: {username: currentUser }})) {
-
-            return true;
-
-          } else {
-
-
-
-          }
-
-        });
-
-        loginSubmit.addEventListener('submit', function(event) {
-
-          var sessionData = sessionStorage.getItem(photoData);
-
-          console.log(photoData);
-
-
-          console.log(this);
-
-          var newImage = $( 'input:text[name=link]').val();
-          var newTitle = $( 'input:text[name=title]').val();
-          var newLink = $( 'input:text[name=link]').val();
-          var newDescription = $( 'input:text[name=description]').val();
+          var currentUser = { username : $('input:text[name=username').val() };  //could break out into two separate
 
           $.ajax({
 
-            url : '/gallery/',
+            url : '/api/isUser/',
             method : 'POST',
-            data : {
+            data : currentUser,
 
-              image : newImage,
-              title : newTitle,
-              link : newLink,
-              description : newDescription
+            success : function() {
 
-            },
-
-            success : function(data) {
-
-              console.log(data);
+              //display a message that confirms login
 
             },
 
             error : function(err) {
 
-              $('#addPhotoForm').removeClass('show');
-              $('#loginForm').addClass('show');
 
-              console.log(err);
+              $('#loginForm').removeClass('show');
+              $('#signUpForm').addClass('show');
 
             }
 
           });
 
 
-      });
+        });
+
+        //login starter function
+
+        document.querySelector('#LoginForm').addEventListener('submit', function() {
+
+          var username = $('input:text[name=username]').val();
+          var password = $('input:text[name=password]').val();
+
+          loginUser(username, password);
+
+        });
+
+        //post new photo function
+
+        var postNewPhoto = function(loginUser, payload) {
+
+            var sessionData = sessionStorage.getItem(payload);
+
+            $.ajax({
+
+              url: '/gallery/',
+              method: 'POST',
+              data: payload,
+
+              success: function () {
+
+                $('#actionMenu').removeClass('hide');
+                $('#signUpForm').removeClass('show');
+
+              },
+
+              error: function (err) {
+
+                  console.log('photo not received. please try again.');
+
+              }
+
+            });
+
+        }
+
+        //reusable login function
+
+        var loginUser = function(username, password) {
+
+          $.ajax({
+
+            url : '/login/',
+            method : 'POST',
+            data : {
+              username: username,
+              password: password
+            },
+
+            success : function() {
+
+              $('#actionMenu').removeClass('hide');
+              $('#signUpForm').removeClass('show');
+
+            },
+
+            error : function(err) {
+
+              console.log('could not find the user in question. please try again');
+
+            }
+
+          });
+
+        }
 
     }
-
 
 
     function _init() {
