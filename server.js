@@ -69,9 +69,12 @@ passport.use(new LocalStrategy(
 
 ));
 
-//defer all gallery routes to gallery router
-var gallery = require('./routes/gallery');
-app.use('/gallery', gallery);
+////defer all gallery routes to gallery router
+//var gallery = require('./routes/gallery');
+//app.use('/gallery', gallery);
+
+//api route
+app.use('/api', require('./routes/api'));
 
 //look to public for static pages
 app.use(express.static('public'));
@@ -165,7 +168,8 @@ function ajaxAuth(req, res, next) {
 
     } else {
 
-        return res.send(401, 'user is not logged in');
+        //return res.send(401, 'user is not logged in');
+        return res.status(401).send('user is not logged in');
 
     }
 
@@ -200,3 +204,48 @@ function ensureAuthenticated (req, res, next) {
 //todo PUT update a single gallery photo identified by the :id param
 //todo DELETE /gallery/:id to delete a single gallery photo identified by the :id param
 //todo GET /gallery/:id/edit to see a form to edit a gallery photo identified by the :id param
+
+//// encryption guide
+//
+//app.post('createUser', function(req, res, err) {
+//
+//  var password1 = req.body.password;
+//  var password2 = req.body.password2;
+//
+//});
+//
+//var bcrypt = require('bcrypt');
+//
+//module.exports = function (sequelize, DataTypes) {
+//
+//  var User = sequelize.define('users', {
+//
+//    username : { type : DataTypes.STRING },
+//    password : {
+//      type: DataTypes.CHAR(16),
+//      required: true
+//    }
+//  }, {
+//    instanceMethods : {
+//
+//      validPassword : function (password) {
+//
+//        return (bcrypt.hash(password) === this.password );
+//    },
+//    hooks: {
+//
+//      beforeCreate: [
+//
+//        function() {
+//
+//          this.password = bcrypt.hash(this.password);
+//
+//        }
+//      ]
+//    }
+//
+//  });
+//
+//  return User;
+//
+//};

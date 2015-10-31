@@ -65,7 +65,7 @@ ExpressGallery.expressGalleryModule = (function() {
 
           event.preventDefault();
 
-          newImage = document.querySelector( 'input:text[name=link]').value; //either the vanilla or jquery way will work
+          newImage = $( 'input:text[name=link]').val(); //either the vanilla or jquery way will work -- look up vanilla way
           newTitle = $( 'input:text[name=title]').val();
           newLink = $( 'input:text[name=link]').val();
           newDescription = $( 'input:text[name=description]').val();
@@ -90,7 +90,6 @@ ExpressGallery.expressGalleryModule = (function() {
 
             error : function(err) {
 
-
               $('#addPhotoForm').removeClass('show');
               $('#loginForm').addClass('show');
 
@@ -101,9 +100,9 @@ ExpressGallery.expressGalleryModule = (function() {
 
         });
 
-        $('#usernameInput').blur(function() {
+        $('#usernameInput input').blur(function() {
 
-          var currentUser = { username : $('input:text[name=username').val() };  //could break out into two separate
+          var currentUser = { username : $('input[name=username').val() };  //could break out into two separate
 
           $.ajax({
 
@@ -111,17 +110,25 @@ ExpressGallery.expressGalleryModule = (function() {
             method : 'POST',
             data : currentUser,
 
-            success : function() {
+            success : function(data) {
 
-              //display a message that confirms login
+              if (data.success) {
+
+                console.log('found the user');
+
+              } else {
+
+                $('#loginForm').removeClass('show');
+                $('#signUpForm').addClass('show');
+
+              }
+
 
             },
 
             error : function(err) {
 
-
-              $('#loginForm').removeClass('show');
-              $('#signUpForm').addClass('show');
+              console.log(err);
 
             }
 
@@ -132,12 +139,26 @@ ExpressGallery.expressGalleryModule = (function() {
 
         //login starter function
 
-        document.querySelector('#LoginForm').addEventListener('submit', function() {
+        document.querySelector('#loginForm').addEventListener('submit', function() {
 
           var username = $('input:text[name=username]').val();
           var password = $('input:text[name=password]').val();
 
           loginUser(username, password);
+
+        });
+
+        //signup starter function
+
+        document.querySelector('#signUpForm').addEventListener('submit', function() {
+
+          var username = $('input:text[name=username]').val();
+          var password = $('input:text[name=password]').val();
+          var password2 = $('input:text[name=password]').val();
+
+          //compare passwords here !!
+
+          signUpUser(username, password);
 
         });
 
@@ -177,6 +198,34 @@ ExpressGallery.expressGalleryModule = (function() {
           $.ajax({
 
             url : '/login/',
+            method : 'POST',
+            data : {
+              username: username,
+              password: password
+            },
+
+            success : function() {
+
+              $('#actionMenu').removeClass('hide');
+              $('#signUpForm').removeClass('show');
+
+            },
+
+            error : function(err) {
+
+              console.log('could not find the user in question. please try again');
+
+            }
+
+          });
+
+        }
+
+        var signUpUser = function(username, password) {
+
+          $.ajax({
+
+            url : '/signup/',
             method : 'POST',
             data : {
               username: username,
